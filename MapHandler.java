@@ -1,20 +1,29 @@
 package BudgetingApp;
+
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
 
 public class MapHandler {
 
-	private HashMap<String, String> transactionTypeMap = new HashMap<String, String>();
+	private HashMap<String, List<String>> transactionTypeMap = new HashMap<String, List<String>>();
 
 	public MapHandler() {
-		this.transactionTypeMap = null;
-		this.transactionTypeMap.put("Safeway", "Grocery");
+		transactionTypeMap.put("Grocery", Arrays.asList("Safeway", "King Sooper's", "Costco", "Wal-mart"));
+		transactionTypeMap.put("Gas", Arrays.asList("7-Eleven", "Sinclair", "Shell Oil"));
 	}
 
 	public void addToMap(String newStore, String type) {
-		this.transactionTypeMap.put(newStore, type);
+		List<String> newList = transactionTypeMap.get(newStore);
+		if (newList == null) {
+			transactionTypeMap.put(newStore, Arrays.asList(type));
+		} else {
+			newList.add(type);
+			transactionTypeMap.put(newStore, newList);
+		}
 	}
 
-	public HashMap<String, String> getMap() {
-		return this.transactionTypeMap;
+	public HashMap<String, List<String>> getMap() {
+		return transactionTypeMap;
 	}
 }

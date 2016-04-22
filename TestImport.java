@@ -1,10 +1,12 @@
 package BudgetingApp;
-import java.io.BufferedReader;
+
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.util.Map;
+
 import org.junit.Test;
 
 public class TestImport {
@@ -15,16 +17,17 @@ public class TestImport {
 		// write the csv
 		String filePath = "C:/Users/monroe/Documents/GitHub/FirstBankBudgetingApp/Test.csv";
 		File file = new File(filePath);
-		String header = "Name,Birthday,Gender";
-		String rowOne = "Matt, May 20th 1988, Male";
+		String rowOne = "05/20/1988, Check+ #2200, 1100,1";
+		String rowTwo = "\n06/20/1988, Visa Safeway, VISA,195";
+		String rowThree = "\n07/20/1988, Payroll Tyler Technologies, EFT,19500000";
 
 		try {
 			file.createNewFile();
-
 			FileWriter fw = new FileWriter(file.getAbsoluteFile());
 			BufferedWriter bw = new BufferedWriter(fw);
-			bw.write(header + "\n");
 			bw.write(rowOne);
+			bw.write(rowTwo);
+			bw.write(rowThree);
 			bw.close();
 		} catch (IOException e) {
 			e.printStackTrace();
@@ -32,9 +35,8 @@ public class TestImport {
 
 		CsvReader csv = new CsvReader();
 
-		csv.csvReader(filePath);
-
 		// call the import function
+		Map<String, BigDecimal> csvReader = csv.csvReader(filePath);
 
 		// check to make sure it's the same
 
