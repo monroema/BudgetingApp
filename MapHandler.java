@@ -5,7 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class MapHandler {
-
+//this class handles maps.
 	private HashMap<String, List<String>> transactionTypeMap = new HashMap<String, List<String>>();
 
 	public MapHandler() {
